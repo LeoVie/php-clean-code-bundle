@@ -94,14 +94,20 @@ class RuleResultCollectionTest extends TestCase
         ];
     }
 
-    private function mockViolation(): Violation
+    private function mockViolation(array $jsonSerialized = []): Violation
     {
-        return $this->createMock(Violation::class);
+        $violation = $this->createMock(Violation::class);
+        $violation->method('jsonSerialize')->willReturn($jsonSerialized);
+
+        return $violation;
     }
 
-    private function mockCompliance(): Compliance
+    private function mockCompliance(array $jsonSerialized = []): Compliance
     {
-        return $this->createMock(Compliance::class);
+        $compliance = $this->createMock(Compliance::class);
+        $compliance->method('jsonSerialize')->willReturn($jsonSerialized);
+
+        return $compliance;
     }
 
     /** @dataProvider getCompliancesProvider */
@@ -137,6 +143,43 @@ class RuleResultCollectionTest extends TestCase
             'with nothing' => [
                 'expected' => [],
                 'ruleResults' => [],
+            ],
+        ];
+    }
+
+    /** @dataProvider jsonSerializeProvider */
+    public function testJsonSerialize(array $expected, array $violations, array $compliances): void
+    {
+        self::assertSame(
+            $expected,
+            RuleResultCollection::create(array_merge($violations, $compliances))->jsonSerialize()
+        );
+    }
+
+    public function jsonSerializeProvider(): array
+    {
+        return [
+            [
+                'expected' => [
+                    'violations' => [
+                        ['violation 1'],
+                        ['violation 2'],
+                        ['violation 3'],
+                    ],
+                    'compliances' => [
+                        ['compliance 1'],
+                        ['compliance 2'],
+                    ],
+                ],
+                'violations' => [
+                    $this->mockViolation(['violation 1']),
+                    $this->mockViolation(['violation 2']),
+                    $this->mockViolation(['violation 3']),
+                ],
+                'compliances' => [
+                    $this->mockCompliance(['compliance 1']),
+                    $this->mockCompliance(['compliance 2']),
+                ],
             ],
         ];
     }

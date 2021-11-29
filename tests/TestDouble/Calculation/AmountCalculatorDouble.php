@@ -2,12 +2,16 @@
 
 namespace LeoVie\PhpCleanCode\Tests\TestDouble\Calculation;
 
-use LeoVie\PhpCleanCode\Calculation\CalculatorConcept\AmountCalculator;
+use LeoVie\PhpCleanCode\Calculator\CalculatorConcept\AmountCalculator;
 
 class AmountCalculatorDouble implements AmountCalculator
 {
+    public function __construct(private float $amount)
+    {
+    }
+
     public function calculate(float $part, float $whole): float
     {
-        return 50.0;
+        return $this->amount;
     }
 }

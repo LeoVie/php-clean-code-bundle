@@ -12,9 +12,16 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Property;
 use PHPUnit\Framework\TestCase;
 
-/** @group now */
 class CCF03InstanceVariablesGroupedTest extends TestCase
 {
+    public function testGetName(): void
+    {
+        self::assertSame(
+            'CC-F-03 Instance Variables Grouped',
+            (new CCF03InstanceVariablesGrouped(new CriticalityCalculatorDouble()))->getName()
+        );
+    }
+
     /** @dataProvider complianceProvider */
     public function testCompliance(Class_ $class, string $message): void
     {

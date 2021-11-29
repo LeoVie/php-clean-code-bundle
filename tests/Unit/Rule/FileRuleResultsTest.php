@@ -17,8 +17,40 @@ class FileRuleResultsTest extends TestCase
 
     public function testGetRuleResultCollection(): void
     {
-        $ruleResultCollection = RuleResultCollection::create([]);
+        $ruleResultCollection = $this->mockRuleResultCollection();
 
         self::assertSame($ruleResultCollection, FileRuleResults::create('', $ruleResultCollection)->getRuleResultCollection());
+    }
+
+    private function mockRuleResultCollection(array $jsonSerialized = []): RuleResultCollection
+    {
+        $ruleResultCollection = $this->createMock(RuleResultCollection::class);
+        $ruleResultCollection->method('jsonSerialize')->willReturn($jsonSerialized);
+
+        return $ruleResultCollection;
+    }
+
+    /** @dataProvider jsonSerializeProvider */
+    public function testJsonSerialize(array $expected, string $path, RuleResultCollection $ruleResultCollection): void
+    {
+        self::assertSame($expected, FileRuleResults::create($path, $ruleResultCollection)->jsonSerialize());
+    }
+
+    public function jsonSerializeProvider(): array
+    {
+        $path = '/var/www/Foo.php';
+        $ruleResultsSerialized = ['rule results'];
+        $ruleResultCollection = $this->mockRuleResultCollection($ruleResultsSerialized);
+
+        return [
+            [
+                'expected' => [
+                    'path' => $path,
+                    'rule_results' => $ruleResultsSerialized,
+                ],
+                'path' => $path,
+                'ruleResultCollection' => $ruleResultCollection,
+            ],
+        ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace LeoVie\PhpCleanCode\Calculation\CalculatorConcept;
+namespace LeoVie\PhpCleanCode\Calculator\CalculatorConcept;
 
 interface AmountCalculator
 {

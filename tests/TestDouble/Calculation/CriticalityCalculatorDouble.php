@@ -2,7 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Tests\TestDouble\Calculation;
 
-use LeoVie\PhpCleanCode\Calculation\CalculatorConcept\CriticalityCalculator;
+use LeoVie\PhpCleanCode\Calculator\CalculatorConcept\CriticalityCalculator;
 
 class CriticalityCalculatorDouble implements CriticalityCalculator
 {

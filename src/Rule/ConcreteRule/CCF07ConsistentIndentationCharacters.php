@@ -31,6 +31,10 @@ class CCF07ConsistentIndentationCharacters implements RuleLinesAware
 
         $violations = [];
         foreach ($lines as $i => $line) {
+            if (trim($line) === '') {
+                continue;
+            }
+
             if ($this->isBlockCommentLine($line)) {
                 continue;
             }
@@ -77,45 +81,12 @@ class CCF07ConsistentIndentationCharacters implements RuleLinesAware
     {
         $ltrimmedLine = ltrim($line);
 
-        if ($ltrimmedLine === '') {
-            return false;
-        }
-
         return $ltrimmedLine[0] === '*';
     }
 
     private function stringToAsciiList(string $string): string
     {
-        $asciiCharacters = array_map(fn(string $char): int => ord($char), str_split($string));
-
-        $characterCounts = [
-            [
-                'char' => $asciiCharacters[0],
-                'n' => 1,
-            ],
-        ];
-        $i = 0;
-        foreach (array_slice($asciiCharacters, 1) as $asciiCharacter) {
-            $currentChar = $characterCounts[$i]['char'];
-
-            $characterCounts[$i] = [
-                'char' => $currentChar,
-                'n' => $characterCounts[$i]['n'] + 1,
-            ];
-
-            if ($asciiCharacter !== $currentChar) {
-                $i++;
-            }
-        }
-
-        $list = array_map(
-            fn(array $characterCount): string => \Safe\sprintf(
-                '%s (%d times)', $characterCount['char'], $characterCount['n']
-            ),
-            $characterCounts
-        );
-
-        return join(', ', $list);
+        return join(', ', array_map(fn(string $char): int => ord($char), str_split($string)));
     }
 
     private function ltrimIndentationCharacters(string $subject): string

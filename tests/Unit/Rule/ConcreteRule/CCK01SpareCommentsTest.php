@@ -2,20 +2,28 @@
 
 namespace LeoVie\PhpCleanCode\Tests\Unit\Rule\ConcreteRule;
 
-use LeoVie\PhpCleanCode\Calculation\AmountCalculator;
 use LeoVie\PhpCleanCode\Rule\ConcreteRule\CCK01SpareComments;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Compliance;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Violation;
+use LeoVie\PhpCleanCode\Tests\TestDouble\Calculation\AmountCalculatorDouble;
 use LeoVie\PhpCleanCode\Tests\TestDouble\Calculation\CriticalityCalculatorDouble;
 use LeoVie\PhpTokenNormalize\Model\TokenSequence;
 use PHPUnit\Framework\TestCase;
 
 class CCK01SpareCommentsTest extends TestCase
 {
+    public function testGetName(): void
+    {
+        self::assertSame(
+            'CC-K-01 Spare Comments',
+            (new CCK01SpareComments(new CriticalityCalculatorDouble(), new AmountCalculatorDouble(0.0)))->getName()
+        );
+    }
+
     /** @dataProvider complianceProvider */
     public function testCompliance(TokenSequence $tokenSequence, string $message): void
     {
-        $rule = new CCK01SpareComments(new CriticalityCalculatorDouble(), new AmountCalculator());
+        $rule = new CCK01SpareComments(new CriticalityCalculatorDouble(), new AmountCalculatorDouble(0.0));
 
         self::assertEquals(
             [Compliance::create($rule, $message)],
@@ -41,7 +49,7 @@ class CCK01SpareCommentsTest extends TestCase
     /** @dataProvider violationProvider */
     public function testViolation(TokenSequence $tokenSequence, string $message): void
     {
-        $rule = new CCK01SpareComments(new CriticalityCalculatorDouble(), new AmountCalculator());
+        $rule = new CCK01SpareComments(new CriticalityCalculatorDouble(), new AmountCalculatorDouble(25.0));
 
         self::assertEquals(
             [Violation::create($rule, $message, 10.0)],

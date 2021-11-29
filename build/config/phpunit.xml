@@ -20,6 +20,10 @@
         <include>
             <directory suffix=".php">../../src</directory>
         </include>
+        <exclude>
+            <directory>../../src/DependencyInjection</directory>
+            <file>../../src/PhpCleanCodeBundle.php</file>
+        </exclude>
         <report>
             <html outputDirectory="../coverage/coverage-html"/>
             <xml outputDirectory="../coverage/coverage-xml"/>

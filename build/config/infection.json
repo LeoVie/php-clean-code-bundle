@@ -37,6 +37,12 @@
       "ignore": [
         "LeoVie\\PhpCleanCode\\Rule\\RuleResult\\RuleResultCollection::sortRuleResultsByRuleName"
       ]
+    },
+    "CastInt": {
+      "ignore": [
+        "LeoVie\\PhpCleanCode\\Scorer\\ConcreteScorers\\CompliancesAndViolationsMatterScorer::create",
+        "LeoVie\\PhpCleanCode\\Scorer\\ConcreteScorers\\OnlyViolationsMatterScorer::create"
+      ]
     }
   },
   "tmpDir": "../cache"

@@ -1,6 +1,6 @@
 <?php
 
-namespace LeoVie\PhpCleanCode\Calculation;
+namespace LeoVie\PhpCleanCode\Calculator;
 
 class AmountCalculator implements CalculatorConcept\AmountCalculator
 {

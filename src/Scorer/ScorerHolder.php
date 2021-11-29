@@ -4,7 +4,7 @@ namespace LeoVie\PhpCleanCode\Scorer;
 
 class ScorerHolder
 {
-    /** @param \Iterator<Scorer> $scorers */
+    /** @param \Iterator<int, Scorer> $scorers */
     public function __construct(private iterable $scorers)
     {
     }

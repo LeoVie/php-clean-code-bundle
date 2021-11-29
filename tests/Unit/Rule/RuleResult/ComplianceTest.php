@@ -22,6 +22,11 @@ class ComplianceTest extends TestCase
         self::assertSame($message, Compliance::create($this->mockRule(), $message)->getMessage());
     }
 
+    public function testGetCriticality(): void
+    {
+        self::assertNull(Compliance::create($this->mockRule(), '')->getCriticality());
+    }
+
     public function testJsonSerialize(): void
     {
         $ruleName = 'Rule123';

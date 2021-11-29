@@ -9,6 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class CCF07ConsistentIndentationCharactersTest extends TestCase
 {
+    public function testGetName(): void
+    {
+        self::assertSame(
+            'CC-F-07 Consistent Indentation Characters',
+            (new CCF07ConsistentIndentationCharacters())->getName()
+        );
+    }
+
     /** @dataProvider complianceProvider */
     public function testCompliance(array $lines, string $message): void
     {
@@ -23,13 +31,25 @@ class CCF07ConsistentIndentationCharactersTest extends TestCase
     public function complianceProvider(): array
     {
         return [
+            'not indented' => [
+                'lines' => ['not indented'],
+                'message' => 'Code is properly indented (all lines use "    " (ascii 32, 32, 32, 32) for indentation).',
+            ],
+            'empty line' => [
+                'lines' => [''],
+                'message' => 'Code is properly indented (all lines use "    " (ascii 32, 32, 32, 32) for indentation).',
+            ],
+            'only whitespaces' => [
+                'lines' => ['   ', '  '],
+                'message' => 'Code is properly indented (all lines use "    " (ascii 32, 32, 32, 32) for indentation).',
+            ],
             'properly indented' => [
                 'lines' => ['    properly indented'],
-                'message' => 'Code is properly indented (all lines use "    " (ascii 32 (4 times)) for indentation).',
+                'message' => 'Code is properly indented (all lines use "    " (ascii 32, 32, 32, 32) for indentation).',
             ],
             'in block comment' => [
                 'lines' => ['     * five spaces for indentation are okay here'],
-                'message' => 'Code is properly indented (all lines use "    " (ascii 32 (4 times)) for indentation).',
+                'message' => 'Code is properly indented (all lines use "    " (ascii 32, 32, 32, 32) for indentation).',
             ],
         ];
     }
@@ -56,15 +76,16 @@ class CCF07ConsistentIndentationCharactersTest extends TestCase
             [
                 'lines' => [
                     '     * five spaces for indentation are okay here',
+                    '   ',
                     '  not enough spaces',
                     '     too many spaces',
                     'not indented',
                     '	tab',
                 ],
                 'messages' => [
-                    'Line 2 uses "  " (ascii 32 (2 times)) for indentation, but should use "    " (ascii 32 (4 times)).',
-                    'Line 3 uses "     " (ascii 32 (5 times)) for indentation, but should use "    " (ascii 32 (4 times)).',
-                    'Line 5 uses "	" (ascii 9 (1 times)) for indentation, but should use "    " (ascii 32 (4 times)).',
+                    'Line 3 uses "  " (ascii 32, 32) for indentation, but should use "    " (ascii 32, 32, 32, 32).',
+                    'Line 4 uses "     " (ascii 32, 32, 32, 32, 32) for indentation, but should use "    " (ascii 32, 32, 32, 32).',
+                    'Line 6 uses "	" (ascii 9) for indentation, but should use "    " (ascii 32, 32, 32, 32).',
                 ],
             ],
         ];

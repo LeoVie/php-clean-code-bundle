@@ -1,10 +1,10 @@
 <?php
 
-namespace LeoVie\PhpCleanCode\Calculation;
+namespace LeoVie\PhpCleanCode\Calculator;
 
 class CriticalityCalculator implements CalculatorConcept\CriticalityCalculator
 {
-    public function __construct(private DeviationCalculator $deviationCalculator)
+    public function __construct(private CalculatorConcept\DeviationCalculator $deviationCalculator)
     {
     }
 

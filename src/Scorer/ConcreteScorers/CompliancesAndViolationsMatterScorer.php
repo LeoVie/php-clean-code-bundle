@@ -12,6 +12,10 @@ class CompliancesAndViolationsMatterScorer implements Scorer
 
     public function create(FileRuleResults $fileRuleResults): Score
     {
+        if (empty($fileRuleResults->getRuleResultCollection()->getRuleResults())) {
+            return Score::create(self::SCORE_TYPE, 0);
+        }
+
         $totalPoints = 0;
         foreach ($fileRuleResults->getRuleResultCollection()->getViolations() as $violation) {
             $totalPoints += $violation->getCriticality();

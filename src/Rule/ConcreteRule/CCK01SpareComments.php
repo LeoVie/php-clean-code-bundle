@@ -2,8 +2,8 @@
 
 namespace LeoVie\PhpCleanCode\Rule\ConcreteRule;
 
-use LeoVie\PhpCleanCode\Calculation\CalculatorConcept\AmountCalculator;
-use LeoVie\PhpCleanCode\Calculation\CalculatorConcept\CriticalityCalculator;
+use LeoVie\PhpCleanCode\Calculator\CalculatorConcept\AmountCalculator;
+use LeoVie\PhpCleanCode\Calculator\CalculatorConcept\CriticalityCalculator;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleTokenSequenceAware;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Compliance;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Violation;
@@ -11,7 +11,7 @@ use LeoVie\PhpTokenNormalize\Model\TokenSequence;
 
 class CCK01SpareComments implements RuleTokenSequenceAware
 {
-    private const NAME = 'CC-K-01 Spare comments';
+    private const NAME = 'CC-K-01 Spare Comments';
     private const VIOLATION_PATTERN
         = 'File has a too high amount of comment tokens (%f, that\' s %f percent points higher than allowed).';
     private const COMPLIANCE_PATTERN

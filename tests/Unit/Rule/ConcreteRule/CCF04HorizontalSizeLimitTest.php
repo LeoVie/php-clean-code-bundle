@@ -10,6 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 class CCF04HorizontalSizeLimitTest extends TestCase
 {
+    public function testGetName(): void
+    {
+        self::assertSame(
+            'CC-F-04 Horizontal Size Limit',
+            (new CCF04HorizontalSizeLimit(new CriticalityCalculatorDouble()))->getName()
+        );
+    }
+
     /** @dataProvider complianceProvider */
     public function testCompliance(array $lines, string $message): void
     {

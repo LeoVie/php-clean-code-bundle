@@ -5,6 +5,7 @@ namespace LeoVie\PhpCleanCode\Rule\ConcreteRule;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleClassNodeAware;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Compliance;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Violation;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Stmt\Class_;
 
 class CCN08MeaningfulClassnames implements RuleClassNodeAware
@@ -31,16 +32,19 @@ class CCN08MeaningfulClassnames implements RuleClassNodeAware
 
     public function check(Class_ $class): array
     {
-        $name = $class->name;
-        if ($name === null) {
+        if ($class->isAnonymous()) {
             return [Compliance::create($this, \Safe\sprintf(self::ANONYMOUS_CLASS_PATTERN))];
         }
 
-        $forbiddenNamePart = $this->getForbiddenNamePart($name->name);
+        /** @var Identifier $classnameIdentifier */
+        $classnameIdentifier = $class->name;
+        $classname = $classnameIdentifier->name;
+
+        $forbiddenNamePart = $this->getForbiddenNamePart($classname);
         if ($forbiddenNamePart !== null) {
             $message = \Safe\sprintf(
                 self::VIOLATION_PATTERN,
-                $name,
+                $classname,
                 $forbiddenNamePart
             );
             $criticality = $this->getCriticalityFactor();
@@ -48,7 +52,7 @@ class CCN08MeaningfulClassnames implements RuleClassNodeAware
             return [Violation::create($this, $message, $criticality)];
         }
 
-        $message = \Safe\sprintf(self::COMPLIANCE_PATTERN, $name);
+        $message = \Safe\sprintf(self::COMPLIANCE_PATTERN, $classname);
 
         return [Compliance::create($this, $message)];
     }

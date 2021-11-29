@@ -1,10 +1,10 @@
 <?php
 
-namespace LeoVie\PhpCleanCode\Calculation;
+namespace LeoVie\PhpCleanCode\Calculator;
 
-class DeviationCalculator
+class DeviationCalculator implements CalculatorConcept\DeviationCalculator
 {
-    public function __construct(private AmountCalculator $amountCalculator)
+    public function __construct(private CalculatorConcept\AmountCalculator $amountCalculator)
     {
     }
 

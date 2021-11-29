@@ -2,7 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Rule\ConcreteRule;
 
-use LeoVie\PhpCleanCode\Calculation\CalculatorConcept\CriticalityCalculator;
+use LeoVie\PhpCleanCode\Calculator\CalculatorConcept\CriticalityCalculator;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleClassNodeAware;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Compliance;
 use LeoVie\PhpCleanCode\Rule\RuleResult\Violation;

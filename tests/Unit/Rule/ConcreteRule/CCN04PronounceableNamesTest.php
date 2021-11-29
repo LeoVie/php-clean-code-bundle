@@ -12,6 +12,14 @@ use PHPUnit\Framework\TestCase;
 
 class CCN04PronounceableNamesTest extends TestCase
 {
+    public function testGetName(): void
+    {
+        self::assertSame(
+            'CC-N-04 Pronounceable Names',
+            (new CCN04PronounceableNames())->getName()
+        );
+    }
+
     /** @dataProvider complianceProvider */
     public function testCompliance(Identifier|Variable $node, string $message): void
     {
@@ -53,6 +61,10 @@ class CCN04PronounceableNamesTest extends TestCase
             [
                 'node' => $this->mockIdentifier('yy', 10),
                 'message' => 'Name "yy" in line 10 seems to be pronounceable.',
+            ],
+            [
+                'node' => $this->mockIdentifier('a', 10),
+                'message' => 'Name "a" in line 10 seems to be pronounceable.',
             ],
             [
                 'node' => $this->mockVariable(),
