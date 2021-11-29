@@ -2,6 +2,9 @@ parameters:
 # nothing to declare
 
 services:
+  _defaults:
+    autowire: true
+
   LeoVie\PhpCleanCode\:
     resource: '../src/'
     exclude:
