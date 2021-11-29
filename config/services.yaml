@@ -17,6 +17,12 @@ services:
   LeoVie\PhpCleanCode\Scorer\ScorerHolder:
     arguments: [ !tagged_iterator { tag: 'app.scorer' } ]
 
+  LeoVie\PhpCleanCode\Service\CleanCodeCheckerService:
+    public: true
+
+  LeoVie\PhpCleanCode\Service\CleanCodeScorerService:
+    public: true
+
   PhpParser\ParserFactory: ~
   PhpParser\NodeTraverser: ~
   PhpParser\Lexer:
