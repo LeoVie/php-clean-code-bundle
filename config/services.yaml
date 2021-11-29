@@ -1,0 +1,29 @@
+parameters:
+# nothing to declare
+
+services:
+  LeoVie\PhpCleanCode\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/PhpCleanCodeBundle.php'
+  _instanceof:
+    LeoVie\PhpCleanCode\Rule\RuleConcept\Rule:
+      tags: [ 'app.rule' ]
+    LeoVie\PhpCleanCode\Scorer\Scorer:
+      tags: [ 'app.scorer' ]
+  LeoVie\PhpCleanCode\Rule\RuleCollection:
+    arguments: [ !tagged_iterator { tag: 'app.rule' } ]
+  LeoVie\PhpCleanCode\Scorer\ScorerHolder:
+    arguments: [ !tagged_iterator { tag: 'app.scorer' } ]
+
+  PhpParser\ParserFactory: ~
+  PhpParser\NodeTraverser: ~
+  PhpParser\Lexer:
+    arguments:
+      $options:
+        usedAttributes:
+          - startLine
+          - endLine
+          - startFilePos
+          - endFilePos
