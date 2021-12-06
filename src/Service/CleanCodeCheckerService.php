@@ -48,26 +48,11 @@ class CleanCodeCheckerService
     public function checkCode(string $fileCode): RuleResultCollection
     {
         return RuleResultCollection::create(array_merge(
-            $this->checkFileCodeAwareRules($fileCode),
             $this->checkLinesAwareRules($fileCode),
             $this->checkTokenSequenceAwareRules($fileCode),
             $this->checkClassNodeAwareRules($fileCode),
             $this->checkNameNodeAwareRules($fileCode)
         ));
-    }
-
-    /** @return RuleResult[] */
-    public function checkFileCodeAwareRules(string $fileCode): array
-    {
-        $ruleResults = [];
-        foreach ($this->ruleCollection->getFileCodeAwareRules() as $rule) {
-            $ruleResults = array_merge(
-                $ruleResults,
-                $rule->check($fileCode)
-            );
-        }
-
-        return $ruleResults;
     }
 
     /** @return RuleResult[] */

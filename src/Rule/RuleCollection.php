@@ -4,7 +4,6 @@ namespace LeoVie\PhpCleanCode\Rule;
 
 use LeoVie\PhpCleanCode\Rule\RuleConcept\Rule;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleClassNodeAware;
-use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleFileCodeAware;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleLinesAware;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleNameNodeAware;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleTokenSequenceAware;
@@ -14,7 +13,7 @@ class RuleCollection
     /** @var Rule[][] */
     private array $rules = [];
 
-    /** @param iterable<RuleClassNodeAware|RuleFileCodeAware|RuleTokenSequenceAware|RuleNameNodeAware|RuleLinesAware> $rules */
+    /** @param iterable<RuleClassNodeAware|RuleTokenSequenceAware|RuleNameNodeAware|RuleLinesAware> $rules */
     public function __construct(iterable $rules)
     {
         foreach ($rules as $rule) {
@@ -27,15 +26,6 @@ class RuleCollection
     {
         /** @var RuleClassNodeAware[] $rules */
         $rules = $this->rules[Rule::CLASS_NODE_AWARE] ?? [];
-
-        return $rules;
-    }
-
-    /** @return RuleFileCodeAware[] */
-    public function getFileCodeAwareRules(): array
-    {
-        /** @var RuleFileCodeAware[] $rules */
-        $rules = $this->rules[Rule::FILE_CODE_AWARE] ?? [];
 
         return $rules;
     }
