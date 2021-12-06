@@ -2,7 +2,6 @@
 
 namespace LeoVie\PhpCleanCode\Parse;
 
-use LeoVie\PhpCleanCode\Cache\NodeVisitorCollectionCache;
 use LeoVie\PhpCleanCode\Parse\NodeVisitor\NodeVisitorCollection;
 use LeoVie\PhpCleanCode\Wrapper\LineAndColumnLexerWrapper;
 use PhpParser\Node;
@@ -17,7 +16,6 @@ class ParseAndTraverser
     public function __construct(
         private NodeTraverser              $nodeTraverser,
         private NodeVisitorCollection      $nodeVisitorCollection,
-        private NodeVisitorCollectionCache $nodeVisitorCollectionCache,
         LineAndColumnLexerWrapper          $lineAndColumnLexerWrapper,
         ParserFactory                      $parserFactory,
     )
@@ -30,10 +28,6 @@ class ParseAndTraverser
 
     public function parseAndTraverse(string $fileCode): NodeVisitorCollection
     {
-        if ($this->nodeVisitorCollectionCache->isCached($fileCode)) {
-            return $this->nodeVisitorCollectionCache->get($fileCode);
-        }
-
         /** @var Node[] $ast */
         $ast = $this->parser->parse($fileCode);
 
@@ -43,8 +37,6 @@ class ParseAndTraverser
         $this->nodeTraverser->addVisitor($this->nodeVisitorCollection->getExtractNamesNodeVisitor());
 
         $this->nodeTraverser->traverse($ast);
-
-        $this->nodeVisitorCollectionCache->set($fileCode, $this->nodeVisitorCollection);
 
         return $this->nodeVisitorCollection;
     }

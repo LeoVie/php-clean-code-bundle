@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Service;
 
+use LeoVie\PhpCleanCode\Cache\RuleResultCollectionCache;
 use LeoVie\PhpCleanCode\Find\PhpFileFinder;
 use LeoVie\PhpCleanCode\Parse\ParseAndTraverser;
 use LeoVie\PhpCleanCode\Rule\FileRuleResults;
@@ -17,7 +18,8 @@ class CleanCodeCheckerService
         private RuleCollection    $ruleCollection,
         private Filesystem        $filesystem,
         private PhpFileFinder     $phpFileFinder,
-        private ParseAndTraverser $parseAndTraverser
+        private ParseAndTraverser $parseAndTraverser,
+        private RuleResultCollectionCache $ruleResultCollectionCache
     )
     {
     }
@@ -47,12 +49,20 @@ class CleanCodeCheckerService
 
     public function checkCode(string $fileCode): RuleResultCollection
     {
-        return RuleResultCollection::create(array_merge(
+        if ($this->ruleResultCollectionCache->isCached($fileCode)) {
+            return $this->ruleResultCollectionCache->get($fileCode);
+        }
+
+        $ruleResultCollection = RuleResultCollection::create(array_merge(
             $this->checkLinesAwareRules($fileCode),
             $this->checkTokenSequenceAwareRules($fileCode),
             $this->checkClassNodeAwareRules($fileCode),
             $this->checkNameNodeAwareRules($fileCode)
         ));
+
+        $this->ruleResultCollectionCache->set($fileCode, $ruleResultCollection);
+
+        return $ruleResultCollection;
     }
 
     /** @return RuleResult[] */

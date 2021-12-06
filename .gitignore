@@ -31,3 +31,5 @@ composer.lock
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
+
+.rule_result_collection_cache

@@ -36,6 +36,11 @@ class AmountCalculatorTest extends TestCase
                 'part' => 200.0,
                 'whole' => 200.0,
             ],
+            [
+                'expected' => INF,
+                'part' => 200.0,
+                'whole' => 0.0,
+            ],
         ];
     }
 }
