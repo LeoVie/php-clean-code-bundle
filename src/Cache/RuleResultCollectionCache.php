@@ -40,8 +40,11 @@ class RuleResultCollectionCache
     {
         $this->cache[$fileCode] = $ruleResultCollection;
 
-        $this->filesystem->writeFile(self::CACHE_FILE, serialize($this->cache));
-
         return $this;
+    }
+
+    public function finalize(): void
+    {
+        $this->filesystem->writeFile(self::CACHE_FILE, serialize($this->cache));
     }
 }
