@@ -26,7 +26,7 @@ class ExtractNamesNodeVisitor extends NodeVisitorAbstract
             || $node instanceof Node\Stmt\ClassMethod
         ) {
             if ($node->name === null) {
-                throw new \Exception('Name is null');
+                return null;
             }
 
             $this->nameNodes[] = $node->name;
