@@ -34,10 +34,14 @@ class CleanCodeCheckerService
     {
         $phpFiles = $this->phpFileFinder->findPhpFilesInPath($path);
 
-        return array_map(
+        $fileRuleResults = array_map(
             fn(string $phpFile): FileRuleResults => $this->checkFile($phpFile),
             $phpFiles
         );
+
+        $this->saveCache();
+
+        return $fileRuleResults;
     }
 
     public function checkFile(string $path): FileRuleResults
@@ -134,5 +138,12 @@ class CleanCodeCheckerService
         }
 
         return $ruleResults;
+    }
+
+    public function saveCache(): self
+    {
+        $this->ruleResultCollectionCache->save();
+
+        return $this;
     }
 }

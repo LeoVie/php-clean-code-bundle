@@ -80,7 +80,7 @@ class RuleResultCollectionCacheTest extends TestCase
         $ruleResultCollection = $this->createMock(RuleResultCollection::class);
         $filesystem = new FilesystemDouble();
 
-        (new RuleResultCollectionCache($filesystem))->set('abc', $ruleResultCollection)->finalize();
+        (new RuleResultCollectionCache($filesystem))->set('abc', $ruleResultCollection)->save();
 
         self::assertEquals(
             $ruleResultCollection, (new RuleResultCollectionCache($filesystem))->get('abc')

@@ -43,7 +43,7 @@ class RuleResultCollectionCache
         return $this;
     }
 
-    public function finalize(): void
+    public function save(): void
     {
         $this->filesystem->writeFile(self::CACHE_FILE, serialize($this->cache));
     }
