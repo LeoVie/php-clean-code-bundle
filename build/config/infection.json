@@ -43,6 +43,11 @@
         "LeoVie\\PhpCleanCode\\Scorer\\ConcreteScorers\\CompliancesAndViolationsMatterScorer::create",
         "LeoVie\\PhpCleanCode\\Scorer\\ConcreteScorers\\OnlyViolationsMatterScorer::create"
       ]
+    },
+    "UnwrapArrayMap": {
+      "ignore": [
+        "LeoVie\\PhpCleanCode\\Find\\PhpFileFinder::findPhpFilesInPath"
+      ]
     }
   },
   "tmpDir": "../cache"

@@ -62,7 +62,7 @@ class CCF04HorizontalSizeLimit implements RuleLinesAware
     }
 
     /**
-     * @param string[] $lines
+     * @param array<int, string> $lines
      *
      * @return Line[]
      */

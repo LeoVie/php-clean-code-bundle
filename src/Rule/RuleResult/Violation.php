@@ -9,7 +9,7 @@ class Violation implements RuleResult
     private function __construct(
         private Rule   $rule,
         private string $message,
-        private float    $criticality
+        private float  $criticality
     )
     {
     }
@@ -29,7 +29,7 @@ class Violation implements RuleResult
         return $this->message;
     }
 
-    public function getCriticality(): ?float
+    public function getCriticality(): float
     {
         return $this->criticality;
     }

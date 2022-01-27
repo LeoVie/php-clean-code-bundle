@@ -7,6 +7,7 @@ use LeoVie\PhpTokenNormalize\Model\TokenSequence;
 
 interface RuleTokenSequenceAware extends Rule
 {
+    /** @var string */
     public const AWARE_OF = Rule::TOKEN_SEQUENCE_AWARE;
 
     /** @return RuleResult[] */

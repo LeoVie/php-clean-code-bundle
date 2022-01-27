@@ -13,6 +13,11 @@ class PhpFileFinder
     /** @return string[] */
     public function findPhpFilesInPath(string $path): array
     {
-        return iterator_to_array($this->finderFactory->instance()->in($path)->name('*.php')->files());
+        return array_map(
+            fn(\SplFileInfo $file) => $file->__toString(),
+            iterator_to_array(
+                $this->finderFactory->instance()->in($path)->name('*.php')->files()
+            )
+        );
     }
 }

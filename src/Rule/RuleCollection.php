@@ -10,14 +10,16 @@ use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleTokenSequenceAware;
 
 class RuleCollection
 {
-    /** @var Rule[][] */
+    /** @var array<string, array<int, Rule>> */
     private array $rules = [];
 
     /** @param iterable<RuleClassNodeAware|RuleTokenSequenceAware|RuleNameNodeAware|RuleLinesAware> $rules */
     public function __construct(iterable $rules)
     {
         foreach ($rules as $rule) {
-            $this->rules[$rule::AWARE_OF][] = $rule;
+            /** @var string $ruleAwareOf */
+            $ruleAwareOf = $rule::AWARE_OF;
+            $this->rules[$ruleAwareOf][] = $rule;
         }
     }
 

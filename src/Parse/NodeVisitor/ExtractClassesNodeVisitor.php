@@ -15,7 +15,7 @@ class ExtractClassesNodeVisitor extends NodeVisitorAbstract
         return new self();
     }
 
-    public function enterNode(Node $node)
+    public function enterNode(Node $node): int|Node|null
     {
         if ($node instanceof Node\Stmt\Class_) {
             $this->classNodes[] = $node;

@@ -6,6 +6,7 @@ use LeoVie\PhpCleanCode\Rule\RuleResult\RuleResult;
 
 interface RuleLinesAware extends Rule
 {
+    /** @var string */
     public const AWARE_OF = Rule::LINES_AWARE;
 
     /**

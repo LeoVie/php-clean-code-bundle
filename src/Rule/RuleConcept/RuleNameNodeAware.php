@@ -8,6 +8,7 @@ use PhpParser\Node\Identifier;
 
 interface RuleNameNodeAware extends Rule
 {
+    /** @var string */
     public const AWARE_OF = Rule::NAME_NODE_AWARE;
 
     /** @return RuleResult[] */
