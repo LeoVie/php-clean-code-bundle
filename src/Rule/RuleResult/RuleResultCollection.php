@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Rule\RuleResult;
 
+/** @psalm-immutable */
 class RuleResultCollection implements \JsonSerializable
 {
     /** @var RuleResult[] */

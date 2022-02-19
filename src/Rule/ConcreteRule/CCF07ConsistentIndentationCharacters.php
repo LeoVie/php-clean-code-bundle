@@ -15,6 +15,7 @@ class CCF07ConsistentIndentationCharacters implements RuleLinesAware
     private const ACTUAL_INDENTATION_PATTERN = '@^\s+@';
     private const CRITICALITY_FACTOR = 5;
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

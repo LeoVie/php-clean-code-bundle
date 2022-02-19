@@ -6,6 +6,7 @@ use LeoVie\PhpCleanCode\Model\Score;
 use LeoVie\PhpCleanCode\Rule\FileRuleResults;
 use LeoVie\PhpCleanCode\Scorer\Scorer;
 
+/** @psalm-mutation-free */
 class OnlyViolationsMatterScorer implements Scorer
 {
     private const SCORE_TYPE = 'OnlyViolationsMatter';

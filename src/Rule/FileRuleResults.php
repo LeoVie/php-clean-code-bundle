@@ -4,6 +4,7 @@ namespace LeoVie\PhpCleanCode\Rule;
 
 use LeoVie\PhpCleanCode\Rule\RuleResult\RuleResultCollection;
 
+/** @psalm-immutable */
 class FileRuleResults implements \JsonSerializable
 {
     private function __construct(private string $path, private RuleResultCollection $ruleResultCollection)

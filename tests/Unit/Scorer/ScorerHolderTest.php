@@ -10,15 +10,14 @@ class ScorerHolderTest extends TestCase
 {
     public function testGetScorers(): void
     {
-        $scorers = [
-            $this->mockScorer(),
-            $this->mockScorer(),
-            $this->mockScorer(),
-        ];
         /** @var \Iterator<int, Scorer> $scorersIterator */
-        $scorersIterator = new \ArrayIterator($scorers);
+        $scorersIterator = new \ArrayIterator([
+            $this->mockScorer(),
+            $this->mockScorer(),
+            $this->mockScorer(),
+        ]);
 
-        self::assertEquals($scorers, (new ScorerHolder($scorersIterator))->getScorers());
+        self::assertEquals($scorersIterator, (new ScorerHolder($scorersIterator))->getScorers());
     }
 
     private function mockScorer(): Scorer

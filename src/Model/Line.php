@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Model;
 
+/** @psalm-immutable */
 class Line
 {
     private function __construct(private int $lineNumber, private string $content)

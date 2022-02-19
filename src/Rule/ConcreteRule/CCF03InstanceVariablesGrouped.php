@@ -21,6 +21,7 @@ class CCF03InstanceVariablesGrouped implements RuleClassNodeAware
     {
     }
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

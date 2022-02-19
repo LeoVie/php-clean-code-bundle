@@ -8,6 +8,7 @@ use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleLinesAware;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleNameNodeAware;
 use LeoVie\PhpCleanCode\Rule\RuleConcept\RuleTokenSequenceAware;
 
+/** @psalm-immutable */
 class RuleCollection
 {
     /** @var array<string, array<int, Rule>> */

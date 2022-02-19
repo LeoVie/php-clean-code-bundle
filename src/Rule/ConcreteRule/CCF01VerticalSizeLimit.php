@@ -19,6 +19,7 @@ class CCF01VerticalSizeLimit implements RuleLinesAware
     {
     }
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

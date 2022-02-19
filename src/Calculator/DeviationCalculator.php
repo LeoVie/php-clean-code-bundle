@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Calculator;
 
+/** @psalm-immutable */
 class DeviationCalculator implements CalculatorConcept\DeviationCalculator
 {
     public function __construct(private CalculatorConcept\AmountCalculator $amountCalculator)
@@ -13,6 +14,7 @@ class DeviationCalculator implements CalculatorConcept\DeviationCalculator
         return ceil($this->amountCalculator->calculate($this->calculateAbsoluteDeviation($actual, $allowed), $allowed));
     }
 
+    /** @psalm-pure */
     public function calculateAbsoluteDeviation(float $actual, float $allowed): float
     {
         return abs($actual - $allowed);

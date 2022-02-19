@@ -4,6 +4,7 @@ namespace LeoVie\PhpCleanCode\Rule\RuleResult;
 
 use LeoVie\PhpCleanCode\Rule\RuleConcept\Rule;
 
+/** @psalm-immutable */
 class Violation implements RuleResult
 {
     private function __construct(

@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Calculator\CalculatorConcept;
 
+/** @psalm-immutable */
 interface DeviationCalculator
 {
     public function calculateRelativeDeviation(float $actual, float $allowed): float;

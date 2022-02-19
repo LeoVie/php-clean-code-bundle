@@ -9,5 +9,6 @@ interface Rule
     public const NAME_NODE_AWARE = 'NameNodeAware';
     public const LINES_AWARE = 'LinesAware';
 
+    /** @psalm-pure */
     public function getName(): string;
 }

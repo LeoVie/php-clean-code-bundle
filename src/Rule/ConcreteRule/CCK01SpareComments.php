@@ -26,6 +26,7 @@ class CCK01SpareComments implements RuleTokenSequenceAware
     {
     }
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

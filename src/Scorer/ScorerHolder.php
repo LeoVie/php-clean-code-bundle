@@ -2,16 +2,18 @@
 
 namespace LeoVie\PhpCleanCode\Scorer;
 
+use Iterator;
+
 class ScorerHolder
 {
-    /** @param \Iterator<int, Scorer> $scorers */
+    /** @param Iterator<int, Scorer> $scorers */
     public function __construct(private iterable $scorers)
     {
     }
 
-    /** @return Scorer[] */
-    public function getScorers(): array
+    /** @return Iterator<int, Scorer> */
+    public function getScorers(): Iterator
     {
-        return iterator_to_array($this->scorers);
+        return $this->scorers;
     }
 }

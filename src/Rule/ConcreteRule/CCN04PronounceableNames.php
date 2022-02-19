@@ -17,6 +17,7 @@ class CCN04PronounceableNames implements RuleNameNodeAware
     private const NODE_IS_EXPRESSION_PATTERN = 'Name is an expression and therefore pronounceable by definition.';
     private const CRITICALITY_FACTOR = 50;
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

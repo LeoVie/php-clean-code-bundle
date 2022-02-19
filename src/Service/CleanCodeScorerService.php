@@ -26,7 +26,7 @@ class CleanCodeScorerService
     {
         return array_map(
             fn(Scorer $scorer): Score => $scorer->create($fileRuleResults),
-            $this->scorerHolder->getScorers()
+            iterator_to_array($this->scorerHolder->getScorers())
         );
     }
 }

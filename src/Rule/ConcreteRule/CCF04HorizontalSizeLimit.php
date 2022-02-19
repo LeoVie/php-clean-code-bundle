@@ -20,6 +20,7 @@ class CCF04HorizontalSizeLimit implements RuleLinesAware
     {
     }
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;

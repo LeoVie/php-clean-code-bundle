@@ -6,7 +6,10 @@ use LeoVie\PhpCleanCode\ServiceFactory\FinderFactory;
 
 class PhpFileFinder
 {
-    public function __construct(private FinderFactory $finderFactory)
+    public function __construct(
+        /** @psalm-readonly */
+        private FinderFactory $finderFactory
+    )
     {
     }
 

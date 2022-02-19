@@ -4,6 +4,7 @@ namespace LeoVie\PhpCleanCode\Model;
 
 use LeoVie\PhpCleanCode\Rule\FileRuleResults;
 
+/** @psalm-immutable */
 class ScoresResult
 {
     /** @param Score[] $scores */

@@ -2,6 +2,7 @@
 
 namespace LeoVie\PhpCleanCode\Calculator;
 
+/** @psalm-immutable */
 class CriticalityCalculator implements CalculatorConcept\CriticalityCalculator
 {
     public function __construct(private CalculatorConcept\DeviationCalculator $deviationCalculator)

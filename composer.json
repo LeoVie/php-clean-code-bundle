@@ -59,5 +59,10 @@
             "type": "vcs",
             "url": "https://github.com/LeoVie/php-token-normalize.git"
         }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    }
 }

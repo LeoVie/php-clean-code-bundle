@@ -20,6 +20,7 @@ class CCN08MeaningfulClassnames implements RuleClassNodeAware
     ];
     private const CRITICALITY_FACTOR = 50;
 
+    /** @psalm-pure */
     public function getName(): string
     {
         return self::NAME;
