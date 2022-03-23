@@ -4,12 +4,12 @@ namespace LeoVie\PhpCleanCode\Scorer;
 
 class ScorerHolder
 {
-    /** @param iterable<int, Scorer> $scorers */
+    /** @param \Traversable<int, Scorer> $scorers */
     public function __construct(private iterable $scorers)
     {
     }
 
-    /** @return iterable<int, Scorer> */
+    /** @return \Traversable<int, Scorer> */
     public function getScorers(): iterable
     {
         return $this->scorers;
